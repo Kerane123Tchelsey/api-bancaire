@@ -4,3 +4,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [],  # ← AJOUTE CETTE LIGNE
 }
+# Désactiver l'authentification pour Swagger
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': None,
+    'USE_SESSION_AUTH': False,
+}
