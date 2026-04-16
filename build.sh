@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-pip install gunicorn
-pip install -r requirements.txt
+pip install --upgrade pip
+pip install gunicorn django djangorestframework drf-yasg django-cors-headers
 python manage.py collectstatic --noinput
-python manage.py migrat
+python manage.py migrate
