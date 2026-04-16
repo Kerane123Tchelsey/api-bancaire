@@ -139,3 +139,4 @@ ADMIN_INDEX_TITLE = "Bienvenue sur l'interface d'administration"
 ADMIN_SITE_HEADER = "Administration Bancaire"
 ADMIN_SITE_TITLE = "Ma Banque - Interface Admin"
 ADMIN_INDEX_TITLE = "Bienvenue sur l'interface d'administration"
+STATIC_ROOT = '/opt/render/project/src/staticfiles'
