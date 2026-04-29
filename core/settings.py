@@ -87,3 +87,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 import os
 STATICFILES_DIRS = []
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Configuration pour servir les fichiers statiques sur Render
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = []
+
+# WhiteNoise pour servir les fichiers statiques
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+# Configuration pour servir les fichiers statiques sur Render
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = []
+
+# WhiteNoise pour servir les fichiers statiques
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
