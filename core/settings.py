@@ -28,4 +28,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [],
-}
+ROOT_URLCONF = 'core.urls'
