@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>API Bancaire - Documentation Interactive</title>
+    <link rel="stylesheet" type="text/css" href="swagger-ui-master/dist/swagger-ui.css">
+    <link rel="icon" type="image/png" href="swagger-ui-master/dist/favicon-32x32.png">
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    <script src="swagger-ui-master/dist/swagger-ui-bundle.js"></script>
+    <script>
+        window.onload = function() {
+            SwaggerUIBundle({
+                url: "https://api-bancaire-5.onrender.com/swagger.json",
+                dom_id: '#swagger-ui',
+                presets: [SwaggerUIBundle.presets.apis],
+                layout: "BaseLayout",
+                deepLinking: true,
+                tryItOutEnabled: true,
+                displayOperationId: false,
+                filter: true,
+                defaultModelsExpandDepth: 1,
+                defaultModelExpandDepth: 1,
+                defaultModelRendering: 'model'
+            });
+        }
+    </script>
+</body>
+</html>
