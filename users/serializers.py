@@ -17,3 +17,13 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = '__all__'
         read_only_fields = ['id', 'date_creation', 'date_completion', 'statut']
+
+class DepotRetraitSerializer(serializers.Serializer):
+    montant = serializers.DecimalField(max_digits=15, decimal_places=2)
+    description = serializers.CharField(required=False, allow_blank=True)
+
+class VirementSerializer(serializers.Serializer):
+    expediteur_id = serializers.IntegerField()
+    destinataire_id = serializers.IntegerField()
+    montant = serializers.DecimalField(max_digits=15, decimal_places=2)
+    description = serializers.CharField(required=False, allow_blank=True)

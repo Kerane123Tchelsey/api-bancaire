@@ -15,7 +15,10 @@ class UtilisateurDetailView(generics.RetrieveUpdateDestroyAPIView):
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from .serializers import DepotRetraitSerializer, VirementSerializer
 from django.db import transaction as db_transaction
+from decimal import Decimal
 from .models import UtilisateurBancaire, Transaction, Banque
 from .serializers import UtilisateurBancaireSerializer, TransactionSerializer, BanqueSerializer
 
@@ -30,10 +33,11 @@ class BanqueDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 # Dépôt
 class DepotView(APIView):
+    @swagger_auto_schema(request_body=DepotRetraitSerializer)
     def post(self, request, utilisateur_id):
         try:
             utilisateur = UtilisateurBancaire.objects.get(id=utilisateur_id)
-            montant = float(request.data.get('montant', 0))
+            montant = Decimal(str(request.data.get('montant', 0)))
 
             if montant <= 0:
                 return Response({"erreur": "Le montant doit être positif"}, status=status.HTTP_400_BAD_REQUEST)
@@ -60,10 +64,11 @@ class DepotView(APIView):
 
 # Retrait
 class RetraitView(APIView):
+    @swagger_auto_schema(request_body=DepotRetraitSerializer)
     def post(self, request, utilisateur_id):
         try:
             utilisateur = UtilisateurBancaire.objects.get(id=utilisateur_id)
-            montant = float(request.data.get('montant', 0))
+            montant = Decimal(str(request.data.get('montant', 0)))
 
             if montant <= 0:
                 return Response({"erreur": "Le montant doit être positif"}, status=status.HTTP_400_BAD_REQUEST)
@@ -94,10 +99,11 @@ class RetraitView(APIView):
 
 # Virement
 class VirementView(APIView):
+    @swagger_auto_schema(request_body=VirementSerializer)
     def post(self, request):
         expediteur_id = request.data.get('expediteur_id')
         destinataire_id = request.data.get('destinataire_id')
-        montant = float(request.data.get('montant', 0))
+        montant = Decimal(str(request.data.get('montant', 0)))
         description = request.data.get('description', '')
 
         if not expediteur_id or not destinataire_id:
